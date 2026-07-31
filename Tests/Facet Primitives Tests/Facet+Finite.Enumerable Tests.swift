@@ -8,6 +8,12 @@ import Testing
 
 @Suite
 struct `Facet+Finite.Enumerable - Enumerable` {
+    @Suite struct Unit {}
+    @Suite struct `Edge Case` {}
+    @Suite struct Integration {}
+}
+
+extension `Facet+Finite.Enumerable - Enumerable`.Unit {
     @Test
     func `count is 2N`() {
         #expect(Facet<1>.count == 2)
@@ -31,6 +37,12 @@ struct `Facet+Finite.Enumerable - Enumerable` {
 
 @Suite
 struct `Facet+Finite.Enumerable - AllCases` {
+    @Suite struct Unit {}
+    @Suite struct `Edge Case` {}
+    @Suite struct Integration {}
+}
+
+extension `Facet+Finite.Enumerable - AllCases`.Unit {
     @Test
     func `allCases has 2N elements in ordinal order`() {
         let all = Array(Facet<2>.allCases)
@@ -40,7 +52,9 @@ struct `Facet+Finite.Enumerable - AllCases` {
         #expect(all[2] == Facet(axis: .secondary, direction: .positive))
         #expect(all[3] == Facet(axis: .secondary, direction: .negative))
     }
+}
 
+extension `Facet+Finite.Enumerable - AllCases`.Integration {
     @Test
     func `allCases round-trips through ordinal`() {
         for facet in Facet<4>.allCases {

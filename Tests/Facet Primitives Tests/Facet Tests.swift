@@ -7,6 +7,12 @@ import Testing
 
 @Suite
 struct `Facet - Construction` {
+    @Suite struct Unit {}
+    @Suite struct `Edge Case` {}
+    @Suite struct Integration {}
+}
+
+extension `Facet - Construction`.Unit {
     @Test
     func `stores axis and direction`() {
         let facet = Facet<3>(axis: .secondary, direction: .negative)
@@ -19,6 +25,12 @@ struct `Facet - Construction` {
 
 @Suite
 struct `Facet - Opposite` {
+    @Suite struct Unit {}
+    @Suite struct `Edge Case` {}
+    @Suite struct Integration {}
+}
+
+extension `Facet - Opposite`.Unit {
     @Test
     func `opposite flips direction and keeps axis`() {
         let facet = Facet<3>(axis: .tertiary, direction: .positive)
@@ -26,7 +38,9 @@ struct `Facet - Opposite` {
         #expect(opposite.axis == facet.axis)
         #expect(opposite.direction == .negative)
     }
+}
 
+extension `Facet - Opposite`.`Edge Case` {
     @Test(arguments: [Direction.positive, Direction.negative])
     func `opposite is involution`(direction: Direction) {
         let facet = Facet<2>(axis: .primary, direction: direction)
@@ -38,6 +52,12 @@ struct `Facet - Opposite` {
 
 @Suite
 struct `Facet - Conformances` {
+    @Suite struct Unit {}
+    @Suite struct `Edge Case` {}
+    @Suite struct Integration {}
+}
+
+extension `Facet - Conformances`.Unit {
     @Test
     func `Equatable distinguishes axis and direction`() {
         #expect(
@@ -53,7 +73,9 @@ struct `Facet - Conformances` {
                 != Facet<2>(axis: .secondary, direction: .positive)
         )
     }
+}
 
+extension `Facet - Conformances`.Integration {
     @Test
     func `Hashable distinguishes all four 2D facets`() {
         let set: Set<Facet<2>> = [
@@ -71,6 +93,12 @@ struct `Facet - Conformances` {
 
 @Suite
 struct `Facet - Comparison` {
+    @Suite struct Unit {}
+    @Suite struct `Edge Case` {}
+    @Suite struct Integration {}
+}
+
+extension `Facet - Comparison`.Unit {
     @Test
     func `orders axis-major then positive-before-negative`() {
         // matches the Finite.Enumerable ordinal order
@@ -78,7 +106,9 @@ struct `Facet - Comparison` {
         #expect(Facet<2>(axis: .primary, direction: .negative) < Facet<2>(axis: .secondary, direction: .positive))
         #expect(Facet<2>(axis: .secondary, direction: .positive) < Facet<2>(axis: .secondary, direction: .negative))
     }
+}
 
+extension `Facet - Comparison`.Integration {
     @Test
     func `sorted equals allCases order`() {
         let all = Array(Facet<2>.allCases)
