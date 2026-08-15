@@ -102,9 +102,18 @@ extension `Facet - Comparison`.Unit {
     @Test
     func `orders axis-major then positive-before-negative`() {
         // matches the Finite.Enumerable ordinal order
-        #expect(Facet<2>(axis: .primary, direction: .positive) < Facet<2>(axis: .primary, direction: .negative))
-        #expect(Facet<2>(axis: .primary, direction: .negative) < Facet<2>(axis: .secondary, direction: .positive))
-        #expect(Facet<2>(axis: .secondary, direction: .positive) < Facet<2>(axis: .secondary, direction: .negative))
+        #expect(
+            Facet<2>(axis: .primary, direction: .positive)
+                < Facet<2>(axis: .primary, direction: .negative)
+        )
+        #expect(
+            Facet<2>(axis: .primary, direction: .negative)
+                < Facet<2>(axis: .secondary, direction: .positive)
+        )
+        #expect(
+            Facet<2>(axis: .secondary, direction: .positive)
+                < Facet<2>(axis: .secondary, direction: .negative)
+        )
     }
 }
 
