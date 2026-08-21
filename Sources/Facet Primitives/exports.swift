@@ -1,5 +1,3 @@
-// exports.swift
-
 @_exported public import Facet_Comparison_Primitives
 @_exported public import Facet_Enumerable_Primitives
 @_exported public import Facet_Equation_Primitives

@@ -1,9 +1,5 @@
-// Facet Tests.swift
-
 import Facet_Primitives
 import Testing
-
-// MARK: - Facet - Construction
 
 @Suite
 struct `Facet - Construction` {
@@ -20,8 +16,6 @@ extension `Facet - Construction`.Unit {
         #expect(facet.direction == .negative)
     }
 }
-
-// MARK: - Facet - Opposite
 
 @Suite
 struct `Facet - Opposite` {
@@ -47,8 +41,6 @@ extension `Facet - Opposite`.`Edge Case` {
         #expect(facet.opposite.opposite == facet)
     }
 }
-
-// MARK: - Facet - Conformances
 
 @Suite
 struct `Facet - Conformances` {
@@ -83,13 +75,11 @@ extension `Facet - Conformances`.Integration {
             Facet(axis: .primary, direction: .negative),
             Facet(axis: .secondary, direction: .positive),
             Facet(axis: .secondary, direction: .negative),
-            Facet(axis: .primary, direction: .positive),  // duplicate
+            Facet(axis: .primary, direction: .positive),
         ]
         #expect(set.count == 4)
     }
 }
-
-// MARK: - Facet - Comparison
 
 @Suite
 struct `Facet - Comparison` {
@@ -101,7 +91,7 @@ struct `Facet - Comparison` {
 extension `Facet - Comparison`.Unit {
     @Test
     func `orders axis-major then positive-before-negative`() {
-        // matches the Finite.Enumerable ordinal order
+
         #expect(
             Facet<2>(axis: .primary, direction: .positive)
                 < Facet<2>(axis: .primary, direction: .negative)

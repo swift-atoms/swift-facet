@@ -1,10 +1,6 @@
-// Facet+Finite.Enumerable Tests.swift
-
 import Facet_Primitives
 import Facet_Primitives_Test_Support
 import Testing
-
-// MARK: - Facet+Finite.Enumerable - Enumerable
 
 @Suite
 struct `Facet+Finite.Enumerable - Enumerable` {
@@ -32,8 +28,6 @@ extension `Facet+Finite.Enumerable - Enumerable`.Unit {
         #expect(Facet<3>(axis: .tertiary, direction: .negative).ordinal == 5)
     }
 }
-
-// MARK: - Facet+Finite.Enumerable - AllCases
 
 @Suite
 struct `Facet+Finite.Enumerable - AllCases` {

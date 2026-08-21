@@ -11,13 +11,12 @@ let package = Package(
         .visionOS(.v27),
     ],
     products: [
-        // MARK: - Namespace
+
         .library(
             name: "Facet Primitive",
             targets: ["Facet Primitive"]
         ),
 
-        // MARK: - Sub-namespace targets
         .library(
             name: "Facet Equation Primitives",
             targets: ["Facet Equation Primitives"]
@@ -35,13 +34,11 @@ let package = Package(
             targets: ["Facet Enumerable Primitives"]
         ),
 
-        // MARK: - Umbrella
         .library(
             name: "Facet Primitives",
             targets: ["Facet Primitives"]
         ),
 
-        // MARK: - Test Support
         .library(
             name: "Facet Primitives Test Support",
             targets: ["Facet Primitives Test Support"]
@@ -78,9 +75,7 @@ let package = Package(
         ),
     ],
     targets: [
-        // MARK: - Namespace
-        // Facet's fields are Axis<N> and Direction, so the root depends on the two atom
-        // roots — the [MOD-017] cross-namespace-root exception. Both roots are zero-dep.
+
         .target(
             name: "Facet Primitive",
             dependencies: [
@@ -89,8 +84,6 @@ let package = Package(
             ]
         ),
 
-        // MARK: - Sub-namespace targets (per [MOD-031])
-        // Institute Equatable/Hashable/Comparable twins:
         .target(
             name: "Facet Equation Primitives",
             dependencies: [
@@ -112,7 +105,7 @@ let package = Package(
                 .product(name: "Comparison Primitives", package: "swift-comparison-primitives"),
             ]
         ),
-        // Finite.Enumerable conformance (2N inhabitants enumeration):
+
         .target(
             name: "Facet Enumerable Primitives",
             dependencies: [
@@ -124,7 +117,6 @@ let package = Package(
             ]
         ),
 
-        // MARK: - Umbrella
         .target(
             name: "Facet Primitives",
             dependencies: [
@@ -136,7 +128,6 @@ let package = Package(
             ]
         ),
 
-        // MARK: - Test Support
         .target(
             name: "Facet Primitives Test Support",
             dependencies: [
@@ -149,7 +140,6 @@ let package = Package(
             path: "Tests/Support"
         ),
 
-        // MARK: - Tests
         .testTarget(
             name: "Facet Primitives Tests",
             dependencies: [
