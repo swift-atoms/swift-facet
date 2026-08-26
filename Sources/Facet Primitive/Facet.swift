@@ -1,5 +1,5 @@
-import Axis_Primitive
-import Direction_Primitive
+import Axis
+import Direction
 
 public struct Facet<let N: Int>: Sendable {
 

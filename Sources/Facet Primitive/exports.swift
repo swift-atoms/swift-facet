@@ -1,2 +1,2 @@
-@_exported public import Axis_Primitive
-@_exported public import Direction_Primitive
+@_exported public import Axis
+@_exported public import Direction

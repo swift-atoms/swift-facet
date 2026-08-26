@@ -1,5 +1,5 @@
-import Facet_Primitives
-import Facet_Primitives_Test_Support
+import Facet
+import Facet_Test_Support
 import Testing
 
 @Suite

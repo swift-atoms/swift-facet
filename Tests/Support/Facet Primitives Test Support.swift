@@ -1,2 +1,0 @@
-internal import Facet_Primitives
-@_exported public import Ordinal_Primitives_Test_Support
