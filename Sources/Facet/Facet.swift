@@ -44,7 +44,3 @@ extension Facet {
     @inlinable
     public func hash(into hasher: inout Hasher) { hasher.combine(_rank) }
 }
-
-#if !hasFeature(Embedded)
-    extension Facet: Codable {}
-#endif

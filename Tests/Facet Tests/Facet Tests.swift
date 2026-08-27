@@ -1,3 +1,5 @@
+import Axis
+import Direction
 import Facet
 import Testing
 
