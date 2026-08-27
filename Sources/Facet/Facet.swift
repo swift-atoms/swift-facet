@@ -1,5 +1,5 @@
-import Axis
-import Direction
+public import Axis
+public import Direction
 
 public struct Facet<let N: Int>: Sendable {
 
@@ -22,7 +22,7 @@ extension Facet {
     }
 }
 
-extension Facet {
+extension Facet: Equatable, Hashable, Comparable {
     @usableFromInline
     var _rank: Int { 2 * axis.underlying + (direction == .positive ? 0 : 1) }
 

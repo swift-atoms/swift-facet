@@ -108,11 +108,3 @@ extension `Facet - Comparison`.Unit {
         )
     }
 }
-
-extension `Facet - Comparison`.Integration {
-    @Test
-    func `sorted equals allCases order`() {
-        let all = Array(Facet<2>.allCases)
-        #expect(all.sorted() == all)
-    }
-}

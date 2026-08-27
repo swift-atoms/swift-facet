@@ -44,7 +44,11 @@ let package = Package(
         ),
         .target(
             name: "Facet Standard Library Integration",
-            dependencies: ["Facet"]
+            dependencies: [
+                "Facet",
+                .product(name: "Axis Standard Library Integration", package: "swift-axis"),
+                .product(name: "Direction Standard Library Integration", package: "swift-direction"),
+            ]
         ),
         .target(
             name: "Facet Apple Foundation Integration",
