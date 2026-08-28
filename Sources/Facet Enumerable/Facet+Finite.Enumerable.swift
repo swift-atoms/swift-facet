@@ -1,6 +1,6 @@
 import Axis
 import Direction
-import Facet_Primitive
+import Facet
 import Finite
 import Ordinal
 

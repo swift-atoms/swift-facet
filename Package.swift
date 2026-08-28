@@ -13,11 +13,6 @@ let package = Package(
     products: [
 
         .library(
-            name: "Facet Primitive",
-            targets: ["Facet Primitive"]
-        ),
-
-        .library(
             name: "Facet Equation",
             targets: ["Facet Equation"]
         ),
@@ -46,38 +41,38 @@ let package = Package(
     ],
     dependencies: [
         .package(
-            url: "https://github.com/swift-molecules/swift-axis.git",
+            url: "https://github.com/swift-atoms/swift-axis.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-molecules/swift-direction.git",
+            url: "https://github.com/swift-atoms/swift-direction.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-molecules/swift-equation.git",
+            url: "https://github.com/swift-atoms/swift-equation.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-molecules/swift-hash.git",
+            url: "https://github.com/swift-atoms/swift-hash.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-molecules/swift-comparison.git",
+            url: "https://github.com/swift-atoms/swift-comparison.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-molecules/swift-finite.git",
+            url: "https://github.com/swift-atoms/swift-finite.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-molecules/swift-ordinal.git",
+            url: "https://github.com/swift-atoms/swift-ordinal.git",
             branch: "main"
         ),
     ],
     targets: [
 
         .target(
-            name: "Facet Primitive",
+            name: "Facet",
             dependencies: [
                 .product(name: "Axis", package: "swift-axis"),
                 .product(name: "Direction", package: "swift-direction"),
@@ -87,21 +82,21 @@ let package = Package(
         .target(
             name: "Facet Equation",
             dependencies: [
-                "Facet Primitive",
+                .target(name: "Facet"),
                 .product(name: "Equation", package: "swift-equation"),
             ]
         ),
         .target(
             name: "Facet Hash",
             dependencies: [
-                "Facet Primitive",
+                .target(name: "Facet"),
                 .product(name: "Hash", package: "swift-hash"),
             ]
         ),
         .target(
             name: "Facet Comparison",
             dependencies: [
-                "Facet Primitive",
+                .target(name: "Facet"),
                 .product(name: "Comparison", package: "swift-comparison"),
             ]
         ),
@@ -109,7 +104,7 @@ let package = Package(
         .target(
             name: "Facet Enumerable",
             dependencies: [
-                "Facet Primitive",
+                .target(name: "Facet"),
                 .product(name: "Axis", package: "swift-axis"),
                 .product(name: "Direction", package: "swift-direction"),
                 .product(name: "Finite", package: "swift-finite"),
@@ -118,20 +113,9 @@ let package = Package(
         ),
 
         .target(
-            name: "Facet",
-            dependencies: [
-                "Facet Primitive",
-                "Facet Equation",
-                "Facet Hash",
-                "Facet Comparison",
-                "Facet Enumerable",
-            ]
-        ),
-
-        .target(
             name: "Facet Test Support",
             dependencies: [
-                "Facet",
+                .target(name: "Facet"),
                 .product(
                     name: "Ordinal Test Support",
                     package: "swift-ordinal"
@@ -143,8 +127,8 @@ let package = Package(
         .testTarget(
             name: "Facet Tests",
             dependencies: [
-                "Facet",
-                "Facet Test Support",
+                .target(name: "Facet"),
+                .target(name: "Facet Test Support"),
             ]
         ),
     ],

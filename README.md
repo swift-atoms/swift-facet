@@ -1,4 +1,4 @@
-# swift-facet
+# Facet Primitives
 
 ![Development Status](https://img.shields.io/badge/status-active--development-blue.svg)
 
@@ -40,7 +40,7 @@ The all-axes-sign sibling `Orthant<N>`, which fixes a sign on *every* axis (givi
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/swift-molecules/swift-facet.git", branch: "main")
+    .package(url: "https://github.com/swift-atoms/swift-facet.git", branch: "main")
 ]
 ```
 
@@ -59,17 +59,17 @@ Requires Swift 6.3.1 and macOS 26 / iOS 26 / tvOS 26 / watchOS 26 / visionOS 26 
 
 ## Architecture
 
-The root `Facet Primitive` depends on `Axis` and `Direction`; each protocol conformance lives in its own sub-target, so consumers import only what they use.
+The root `Facet Primitive` depends only on the two atom roots `Axis Primitive` and `Direction Primitive` (both zero-dependency); each conformance lives in its own sub-target, so consumers pay only for what they import.
 
-| Product | Depends on | When to import |
+| Product | Target | Purpose |
 |---------|--------|---------|
-| `Facet Primitive` | `swift-axis`, `swift-direction` | The `Facet<N>` value, `opposite`, and equality / hashing / ordering witnesses (axis-major rank). |
-| `Facet Equation` | `swift-equation` | `Equation.Protocol` conformance (the institute `Equatable` twin). |
-| `Facet Hash` | `swift-hash` | `Hash.Protocol` conformance (the institute `Hashable` twin). |
-| `Facet Comparison` | `swift-comparison` | `Comparison.Protocol` conformance (the institute `Comparable` twin). |
-| `Facet Enumerable` | `swift-finite`, `swift-ordinal` | `Finite.Enumerable` conformance: `.count`, `.ordinal`, `.allCases` over the `2N` facets. |
-| `Facet` | all of the above | Umbrella re-exporting every sub-target. |
-| `Facet Test Support` | `Facet` | Test-only spine re-exporting upstream Test Support for ordinal literal comparisons. |
+| `Facet Primitive` | `Sources/Facet Primitive/` | The `Facet<N>` namespace: the `axis × direction` value, `opposite`, and the equality / hashing / ordering witnesses (axis-major rank). |
+| `Facet Equation Primitives` | `Sources/Facet Equation Primitives/` | `Equation.Protocol` (the institute `Equatable` twin) conformance. |
+| `Facet Hash Primitives` | `Sources/Facet Hash Primitives/` | `Hash.Protocol` (the institute `Hashable` twin) conformance. |
+| `Facet Comparison Primitives` | `Sources/Facet Comparison Primitives/` | `Comparison.Protocol` (the institute `Comparable` twin) conformance. |
+| `Facet Enumerable Primitives` | `Sources/Facet Enumerable Primitives/` | `Finite.Enumerable` conformance: `count`, `ordinal`, and `allCases` over the `2N` facets. |
+| `Facet Primitives` | `Sources/Facet Primitives/` | Umbrella re-exporting the root and all four conformance sub-targets. |
+| `Facet Test Support` | `Tests/Support/` | Re-exports the umbrella for test consumers. |
 
 Foundation-free.
 

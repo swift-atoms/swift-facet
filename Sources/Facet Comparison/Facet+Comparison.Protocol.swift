@@ -1,4 +1,4 @@
 public import Comparison
-public import Facet_Primitive
+public import Facet
 
 extension Facet: Comparison.`Protocol` {}
