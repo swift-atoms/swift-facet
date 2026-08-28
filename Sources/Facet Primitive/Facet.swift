@@ -1,5 +1,5 @@
-public import Axis
-public import Direction
+import Axis
+import Direction
 
 public struct Facet<let N: Int>: Sendable {
 
@@ -22,7 +22,7 @@ extension Facet {
     }
 }
 
-extension Facet: Equatable, Hashable, Comparable {
+extension Facet {
     @usableFromInline
     var _rank: Int { 2 * axis.underlying + (direction == .positive ? 0 : 1) }
 
@@ -44,3 +44,7 @@ extension Facet: Equatable, Hashable, Comparable {
     @inlinable
     public func hash(into hasher: inout Hasher) { hasher.combine(_rank) }
 }
+
+#if !hasFeature(Embedded)
+    extension Facet: Codable {}
+#endif

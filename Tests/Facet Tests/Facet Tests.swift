@@ -1,5 +1,3 @@
-import Axis
-import Direction
 import Facet
 import Testing
 
@@ -106,5 +104,13 @@ extension `Facet - Comparison`.Unit {
             Facet<2>(axis: .secondary, direction: .positive)
                 < Facet<2>(axis: .secondary, direction: .negative)
         )
+    }
+}
+
+extension `Facet - Comparison`.Integration {
+    @Test
+    func `sorted equals allCases order`() {
+        let all = Array(Facet<2>.allCases)
+        #expect(all.sorted() == all)
     }
 }
