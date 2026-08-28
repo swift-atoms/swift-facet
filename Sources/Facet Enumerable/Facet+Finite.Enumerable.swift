@@ -1,8 +1,8 @@
-import Axis_Primitive
-import Direction_Primitive
-import Facet_Primitive
-import Finite_Primitives
-import Ordinal_Primitives
+import Axis
+import Direction
+import Facet
+import Finite
+import Ordinal
 
 extension Facet: Finite.Enumerable {
 

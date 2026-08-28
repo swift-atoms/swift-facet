@@ -11,7 +11,7 @@ The oriented faces of an N-dimensional orthotope — `Facet<N>` pairs an `Axis<N
 `Facet<N>` is the codimension-1 face of an `N`-dimensional box: it fixes a sign on exactly one axis. In 3D those are the six faces of a cube — `+X`, `-X`, `+Y`, `-Y`, `+Z`, `-Z` — so a `Facet<N>` has exactly `2N` inhabitants. Each facet carries its `axis` and `direction`, and `opposite` flips the direction while keeping the axis.
 
 ```swift
-import Facet_Primitives
+import Facet
 
 let right = Facet<3>(axis: .primary, direction: .positive)   // +X face
 let left = right.opposite                                    // -X face
@@ -23,7 +23,7 @@ left.direction == .negative   // true  — and flips the direction
 Because `Facet<N>` conforms to `Finite.Enumerable`, its `2N` inhabitants enumerate in a fixed axis-major order — positive before negative within each axis — and each maps to a stable `ordinal` in `0..<2N`.
 
 ```swift
-import Facet_Primitives
+import Facet
 
 Facet<3>.count                   // 6  (three axes × two directions)
 
@@ -32,7 +32,7 @@ for face in Facet<2>.allCases {
 }
 ```
 
-The all-axes-sign sibling `Orthant<N>`, which fixes a sign on *every* axis (giving `2ᴺ` corners), lives in `swift-orthant-primitives`.
+The all-axes-sign sibling `Orthant<N>`, which fixes a sign on *every* axis (giving `2ᴺ` corners), lives in `swift-orthant`.
 
 ---
 
@@ -40,7 +40,7 @@ The all-axes-sign sibling `Orthant<N>`, which fixes a sign on *every* axis (givi
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/swift-primitives/swift-facet-primitives.git", branch: "main")
+    .package(url: "https://github.com/swift-atoms/swift-facet.git", branch: "main")
 ]
 ```
 
@@ -48,7 +48,7 @@ dependencies: [
 .target(
     name: "App",
     dependencies: [
-        .product(name: "Facet Primitives", package: "swift-facet-primitives"),
+        .product(name: "Facet", package: "swift-facet"),
     ]
 )
 ```
@@ -69,7 +69,7 @@ The root `Facet Primitive` depends only on the two atom roots `Axis Primitive` a
 | `Facet Comparison Primitives` | `Sources/Facet Comparison Primitives/` | `Comparison.Protocol` (the institute `Comparable` twin) conformance. |
 | `Facet Enumerable Primitives` | `Sources/Facet Enumerable Primitives/` | `Finite.Enumerable` conformance: `count`, `ordinal`, and `allCases` over the `2N` facets. |
 | `Facet Primitives` | `Sources/Facet Primitives/` | Umbrella re-exporting the root and all four conformance sub-targets. |
-| `Facet Primitives Test Support` | `Tests/Support/` | Re-exports the umbrella for test consumers. |
+| `Facet Test Support` | `Tests/Support/` | Re-exports the umbrella for test consumers. |
 
 Foundation-free.
 

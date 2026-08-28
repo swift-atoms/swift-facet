@@ -1,4 +1,4 @@
-import Facet_Primitives
+import Facet
 import Testing
 
 @Suite

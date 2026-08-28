@@ -2,7 +2,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "swift-facet-primitives",
+    name: "swift-facet",
     platforms: [
         .macOS(.v27),
         .iOS(.v27),
@@ -13,138 +13,122 @@ let package = Package(
     products: [
 
         .library(
-            name: "Facet Primitive",
-            targets: ["Facet Primitive"]
+            name: "Facet Equation",
+            targets: ["Facet Equation"]
+        ),
+        .library(
+            name: "Facet Hash",
+            targets: ["Facet Hash"]
+        ),
+        .library(
+            name: "Facet Comparison",
+            targets: ["Facet Comparison"]
+        ),
+        .library(
+            name: "Facet Enumerable",
+            targets: ["Facet Enumerable"]
         ),
 
         .library(
-            name: "Facet Equation Primitives",
-            targets: ["Facet Equation Primitives"]
-        ),
-        .library(
-            name: "Facet Hash Primitives",
-            targets: ["Facet Hash Primitives"]
-        ),
-        .library(
-            name: "Facet Comparison Primitives",
-            targets: ["Facet Comparison Primitives"]
-        ),
-        .library(
-            name: "Facet Enumerable Primitives",
-            targets: ["Facet Enumerable Primitives"]
+            name: "Facet",
+            targets: ["Facet"]
         ),
 
         .library(
-            name: "Facet Primitives",
-            targets: ["Facet Primitives"]
-        ),
-
-        .library(
-            name: "Facet Primitives Test Support",
-            targets: ["Facet Primitives Test Support"]
+            name: "Facet Test Support",
+            targets: ["Facet Test Support"]
         ),
     ],
     dependencies: [
         .package(
-            url: "https://github.com/swift-primitives/swift-axis-primitives.git",
+            url: "https://github.com/swift-atoms/swift-axis.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-direction-primitives.git",
+            url: "https://github.com/swift-atoms/swift-direction.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-equation-primitives.git",
+            url: "https://github.com/swift-atoms/swift-equation.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-hash-primitives.git",
+            url: "https://github.com/swift-atoms/swift-hash.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-comparison-primitives.git",
+            url: "https://github.com/swift-atoms/swift-comparison.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-finite-primitives.git",
+            url: "https://github.com/swift-atoms/swift-finite.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-ordinal-primitives.git",
+            url: "https://github.com/swift-atoms/swift-ordinal.git",
             branch: "main"
         ),
     ],
     targets: [
 
         .target(
-            name: "Facet Primitive",
+            name: "Facet",
             dependencies: [
-                .product(name: "Axis Primitive", package: "swift-axis-primitives"),
-                .product(name: "Direction Primitive", package: "swift-direction-primitives"),
+                .product(name: "Axis", package: "swift-axis"),
+                .product(name: "Direction", package: "swift-direction"),
             ]
         ),
 
         .target(
-            name: "Facet Equation Primitives",
+            name: "Facet Equation",
             dependencies: [
-                "Facet Primitive",
-                .product(name: "Equation Primitives", package: "swift-equation-primitives"),
+                .target(name: "Facet"),
+                .product(name: "Equation", package: "swift-equation"),
             ]
         ),
         .target(
-            name: "Facet Hash Primitives",
+            name: "Facet Hash",
             dependencies: [
-                "Facet Primitive",
-                .product(name: "Hash Primitives", package: "swift-hash-primitives"),
+                .target(name: "Facet"),
+                .product(name: "Hash", package: "swift-hash"),
             ]
         ),
         .target(
-            name: "Facet Comparison Primitives",
+            name: "Facet Comparison",
             dependencies: [
-                "Facet Primitive",
-                .product(name: "Comparison Primitives", package: "swift-comparison-primitives"),
-            ]
-        ),
-
-        .target(
-            name: "Facet Enumerable Primitives",
-            dependencies: [
-                "Facet Primitive",
-                .product(name: "Axis Primitive", package: "swift-axis-primitives"),
-                .product(name: "Direction Primitive", package: "swift-direction-primitives"),
-                .product(name: "Finite Primitives", package: "swift-finite-primitives"),
-                .product(name: "Ordinal Primitives", package: "swift-ordinal-primitives"),
+                .target(name: "Facet"),
+                .product(name: "Comparison", package: "swift-comparison"),
             ]
         ),
 
         .target(
-            name: "Facet Primitives",
+            name: "Facet Enumerable",
             dependencies: [
-                "Facet Primitive",
-                "Facet Equation Primitives",
-                "Facet Hash Primitives",
-                "Facet Comparison Primitives",
-                "Facet Enumerable Primitives",
+                .target(name: "Facet"),
+                .product(name: "Axis", package: "swift-axis"),
+                .product(name: "Direction", package: "swift-direction"),
+                .product(name: "Finite", package: "swift-finite"),
+                .product(name: "Ordinal", package: "swift-ordinal"),
             ]
         ),
 
         .target(
-            name: "Facet Primitives Test Support",
+            name: "Facet Test Support",
             dependencies: [
-                "Facet Primitives",
+                .target(name: "Facet"),
                 .product(
-                    name: "Ordinal Primitives Test Support",
-                    package: "swift-ordinal-primitives"
+                    name: "Ordinal Test Support",
+                    package: "swift-ordinal"
                 ),
             ],
             path: "Tests/Support"
         ),
 
         .testTarget(
-            name: "Facet Primitives Tests",
+            name: "Facet Tests",
             dependencies: [
-                "Facet Primitives",
-                "Facet Primitives Test Support",
+                .target(name: "Facet"),
+                .target(name: "Facet Test Support"),
             ]
         ),
     ],
