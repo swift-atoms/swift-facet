@@ -45,6 +45,10 @@ let package = Package(
             branch: "main"
         ),
         .package(
+            url: "https://github.com/swift-atoms/swift-cardinal.git",
+            branch: "main"
+        ),
+        .package(
             url: "https://github.com/swift-atoms/swift-direction.git",
             branch: "main"
         ),
@@ -83,21 +87,21 @@ let package = Package(
             name: "Facet Equation",
             dependencies: [
                 .target(name: "Facet"),
-                .product(name: "Equation", package: "swift-equation"),
+                .product(name: "Equation Protocol", package: "swift-equation"),
             ]
         ),
         .target(
             name: "Facet Hash",
             dependencies: [
                 .target(name: "Facet"),
-                .product(name: "Hash", package: "swift-hash"),
+                .product(name: "Hash Protocol", package: "swift-hash"),
             ]
         ),
         .target(
             name: "Facet Comparison",
             dependencies: [
                 .target(name: "Facet"),
-                .product(name: "Comparison", package: "swift-comparison"),
+                .product(name: "Comparison Protocol", package: "swift-comparison"),
             ]
         ),
 
@@ -106,9 +110,15 @@ let package = Package(
             dependencies: [
                 .target(name: "Facet"),
                 .product(name: "Axis", package: "swift-axis"),
+                .product(name: "Cardinal", package: "swift-cardinal"),
                 .product(name: "Direction", package: "swift-direction"),
                 .product(name: "Finite", package: "swift-finite"),
+                .product(name: "Finite Enumerable", package: "swift-finite"),
                 .product(name: "Ordinal", package: "swift-ordinal"),
+                .product(
+                    name: "Ordinal Standard Library Integration",
+                    package: "swift-ordinal"
+                ),
             ]
         ),
 
@@ -128,7 +138,12 @@ let package = Package(
             name: "Facet Tests",
             dependencies: [
                 .target(name: "Facet"),
+                .target(name: "Facet Comparison"),
+                .target(name: "Facet Equation"),
+                .target(name: "Facet Enumerable"),
+                .target(name: "Facet Hash"),
                 .target(name: "Facet Test Support"),
+                .product(name: "Finite Enumerable", package: "swift-finite"),
             ]
         ),
     ],

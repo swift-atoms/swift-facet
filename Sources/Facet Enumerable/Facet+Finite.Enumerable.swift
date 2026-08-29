@@ -1,10 +1,13 @@
-import Axis
-import Direction
-import Facet
-import Finite
-import Ordinal
+public import Axis
+public import Cardinal
+public import Direction
+public import Facet
+public import Finite
+public import Finite_Enumerable
+public import Ordinal
+public import Ordinal_Standard_Library_Integration
 
-extension Facet: Finite.Enumerable {
+extension Facet: Finite::Finite.Enumerable {
 
     @inlinable
     public static var count: Cardinal { Cardinal(integerLiteral: UInt(2 * N)) }
