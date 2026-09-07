@@ -3,15 +3,15 @@ import Finite
 import Testing
 
 @Suite
-struct `Facet - Construction` {
-    @Suite struct Unit {}
-    @Suite struct `Edge Case` {}
-    @Suite struct Integration {}
+struct `Facet construction preserves an axis and a direction` {
+    @Suite struct `Facets retain both supplied components` {}
+    @Suite struct `No facet construction boundary cases are defined` {}
+    @Suite struct `No facet construction integration cases are defined` {}
 }
 
-extension `Facet - Construction`.Unit {
+extension `Facet construction preserves an axis and a direction`.`Facets retain both supplied components` {
     @Test
-    func `stores axis and direction`() {
+    func `Facet construction stores both the axis and direction`() {
         let facet = Facet<3>(axis: .secondary, direction: .negative)
         #expect(facet.axis == Axis<3>.secondary)
         #expect(facet.direction == .negative)
@@ -19,13 +19,13 @@ extension `Facet - Construction`.Unit {
 }
 
 @Suite
-struct `Facet - Opposite` {
-    @Suite struct Unit {}
-    @Suite struct `Edge Case` {}
-    @Suite struct Integration {}
+struct `Facet opposition flips direction while preserving its axis` {
+    @Suite struct `Opposite facets retain their axis and reverse their direction` {}
+    @Suite struct `Applying facet opposition twice restores the original facet` {}
+    @Suite struct `No facet opposition integration cases are defined` {}
 }
 
-extension `Facet - Opposite`.Unit {
+extension `Facet opposition flips direction while preserving its axis`.`Opposite facets retain their axis and reverse their direction` {
     @Test
     func `opposite flips direction and keeps axis`() {
         let facet = Facet<3>(axis: .tertiary, direction: .positive)
@@ -35,7 +35,7 @@ extension `Facet - Opposite`.Unit {
     }
 }
 
-extension `Facet - Opposite`.`Edge Case` {
+extension `Facet opposition flips direction while preserving its axis`.`Applying facet opposition twice restores the original facet` {
     @Test(arguments: [Direction.positive, Direction.negative])
     func `opposite is involution`(direction: Direction) {
         let facet = Facet<2>(axis: .primary, direction: direction)
@@ -44,13 +44,13 @@ extension `Facet - Opposite`.`Edge Case` {
 }
 
 @Suite
-struct `Facet - Conformances` {
-    @Suite struct Unit {}
-    @Suite struct `Edge Case` {}
-    @Suite struct Integration {}
+struct `Facet equality and hashing distinguish axis direction pairs` {
+    @Suite struct `Facet equality compares both axis and direction` {}
+    @Suite struct `No facet equality and hashing boundary cases are defined` {}
+    @Suite struct `Facet hashing retains all distinct two dimensional facets` {}
 }
 
-extension `Facet - Conformances`.Unit {
+extension `Facet equality and hashing distinguish axis direction pairs`.`Facet equality compares both axis and direction` {
     @Test
     func `Equatable distinguishes axis and direction`() {
         #expect(
@@ -68,7 +68,7 @@ extension `Facet - Conformances`.Unit {
     }
 }
 
-extension `Facet - Conformances`.Integration {
+extension `Facet equality and hashing distinguish axis direction pairs`.`Facet hashing retains all distinct two dimensional facets` {
     @Test
     func `Hashable distinguishes all four 2D facets`() {
         let set: Set<Facet<2>> = [
@@ -83,15 +83,15 @@ extension `Facet - Conformances`.Integration {
 }
 
 @Suite
-struct `Facet - Comparison` {
-    @Suite struct Unit {}
-    @Suite struct `Edge Case` {}
-    @Suite struct Integration {}
+struct `Facet ordering compares axes before directions` {
+    @Suite struct `Facet comparison orders axes first and positive before negative` {}
+    @Suite struct `No facet ordering boundary cases are defined` {}
+    @Suite struct `Facet sorting agrees with finite enumeration order` {}
 }
 
-extension `Facet - Comparison`.Unit {
+extension `Facet ordering compares axes before directions`.`Facet comparison orders axes first and positive before negative` {
     @Test
-    func `orders axis-major then positive-before-negative`() {
+    func `Facet ordering compares axes before positive and negative directions`() {
 
         #expect(
             Facet<2>(axis: .primary, direction: .positive)
@@ -108,7 +108,7 @@ extension `Facet - Comparison`.Unit {
     }
 }
 
-extension `Facet - Comparison`.Integration {
+extension `Facet ordering compares axes before directions`.`Facet sorting agrees with finite enumeration order` {
     @Test
     func `sorted equals allCases order`() {
         let all = Array(Facet<2>.allCases)

@@ -4,13 +4,13 @@ import Finite
 import Testing
 
 @Suite
-struct `Facet+Finite.Enumerable - Enumerable` {
-    @Suite struct Unit {}
-    @Suite struct `Edge Case` {}
-    @Suite struct Integration {}
+struct `Finite facets enumerate both directions for each axis` {
+    @Suite struct `Facet counts and ordinals preserve axis major direction ordering` {}
+    @Suite struct `No facet enumeration boundary cases are defined` {}
+    @Suite struct `No facet enumeration integration cases are defined` {}
 }
 
-extension `Facet+Finite.Enumerable - Enumerable`.Unit {
+extension `Finite facets enumerate both directions for each axis`.`Facet counts and ordinals preserve axis major direction ordering` {
     @Test
     func `count is 2N`() {
         #expect(Facet<1>.count == 2)
@@ -31,13 +31,13 @@ extension `Facet+Finite.Enumerable - Enumerable`.Unit {
 }
 
 @Suite
-struct `Facet+Finite.Enumerable - AllCases` {
-    @Suite struct Unit {}
-    @Suite struct `Edge Case` {}
-    @Suite struct Integration {}
+struct `Facet case collections enumerate axis direction pairs in ordinal order` {
+    @Suite struct `Facet case collections contain two directions per axis` {}
+    @Suite struct `No facet case collection boundary cases are defined` {}
+    @Suite struct `Facet enumeration round trips each ordinal` {}
 }
 
-extension `Facet+Finite.Enumerable - AllCases`.Unit {
+extension `Facet case collections enumerate axis direction pairs in ordinal order`.`Facet case collections contain two directions per axis` {
     @Test
     func `allCases has 2N elements in ordinal order`() {
         let all = Array(Facet<2>.allCases)
@@ -49,7 +49,7 @@ extension `Facet+Finite.Enumerable - AllCases`.Unit {
     }
 }
 
-extension `Facet+Finite.Enumerable - AllCases`.Integration {
+extension `Facet case collections enumerate axis direction pairs in ordinal order`.`Facet enumeration round trips each ordinal` {
     @Test
     func `allCases round-trips through ordinal`() {
         for facet in Facet<4>.allCases {
