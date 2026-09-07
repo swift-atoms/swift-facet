@@ -1,9 +1,5 @@
 import Facet
-import Facet_Comparison
-import Facet_Equation
-import Facet_Enumerable
-import Facet_Hash
-import Finite_Enumerable
+import Finite
 import Testing
 
 @Suite

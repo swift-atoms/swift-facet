@@ -1,7 +1,6 @@
 import Facet
-import Facet_Enumerable
 import Facet_Test_Support
-import Finite_Enumerable
+import Finite
 import Testing
 
 @Suite

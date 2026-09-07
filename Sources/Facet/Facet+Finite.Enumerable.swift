@@ -1,9 +1,7 @@
 public import Axis
 public import Cardinal
 public import Direction
-public import Facet
 public import Finite
-public import Finite_Enumerable
 public import Ordinal
 public import Ordinal_Standard_Library_Integration
 

@@ -11,33 +11,10 @@ let package = Package(
         .visionOS(.v27),
     ],
     products: [
-
-        .library(
-            name: "Facet Equation",
-            targets: ["Facet Equation"]
-        ),
-        .library(
-            name: "Facet Hash",
-            targets: ["Facet Hash"]
-        ),
-        .library(
-            name: "Facet Comparison",
-            targets: ["Facet Comparison"]
-        ),
-        .library(
-            name: "Facet Enumerable",
-            targets: ["Facet Enumerable"]
-        ),
-
-        .library(
-            name: "Facet",
-            targets: ["Facet"]
-        ),
-
-        .library(
-            name: "Facet Test Support",
-            targets: ["Facet Test Support"]
-        ),
+        .library(name: "Facet", targets: ["Facet"]),
+        .library(name: "Facet Standard Library Integration", targets: ["Facet Standard Library Integration"]),
+        .library(name: "Facet Foundation Library Integration", targets: ["Facet Foundation Library Integration"]),
+        .library(name: "Facet Test Support", targets: ["Facet Test Support"]),
     ],
     dependencies: [
         .package(
@@ -74,84 +51,61 @@ let package = Package(
         ),
     ],
     targets: [
-
         .target(
             name: "Facet",
             dependencies: [
                 .product(name: "Axis", package: "swift-axis"),
                 .product(name: "Direction", package: "swift-direction"),
-            ]
-        ),
-
-        .target(
-            name: "Facet Equation",
-            dependencies: [
-                .target(name: "Facet"),
-                .product(name: "Equation Protocol", package: "swift-equation"),
-            ]
-        ),
-        .target(
-            name: "Facet Hash",
-            dependencies: [
-                .target(name: "Facet"),
-                .product(name: "Hash Protocol", package: "swift-hash"),
-            ]
-        ),
-        .target(
-            name: "Facet Comparison",
-            dependencies: [
-                .target(name: "Facet"),
-                .product(name: "Comparison Protocol", package: "swift-comparison"),
-            ]
-        ),
-
-        .target(
-            name: "Facet Enumerable",
-            dependencies: [
-                .target(name: "Facet"),
-                .product(name: "Axis", package: "swift-axis"),
+                .product(name: "Equation", package: "swift-equation"),
+                .product(name: "Hash", package: "swift-hash"),
+                .product(name: "Comparison", package: "swift-comparison"),
                 .product(name: "Cardinal", package: "swift-cardinal"),
-                .product(name: "Direction", package: "swift-direction"),
                 .product(name: "Finite", package: "swift-finite"),
-                .product(name: "Finite Enumerable", package: "swift-finite"),
                 .product(name: "Ordinal", package: "swift-ordinal"),
-                .product(
-                    name: "Ordinal Standard Library Integration",
-                    package: "swift-ordinal"
-                ),
-            ]
+                .product(name: "Ordinal Standard Library Integration", package: "swift-ordinal"),
+            ],
+            path: "Sources/Facet"
         ),
-
+        .target(
+            name: "Facet Standard Library Integration",
+            dependencies: [
+                .target(name: "Facet"),
+            ],
+            path: "Sources/Facet Standard Library Integration"
+        ),
+        .target(
+            name: "Facet Foundation Library Integration",
+            dependencies: [
+                .target(name: "Facet"),
+                .target(name: "Facet Standard Library Integration"),
+            ],
+            path: "Sources/Facet Foundation Library Integration"
+        ),
         .target(
             name: "Facet Test Support",
             dependencies: [
                 .target(name: "Facet"),
-                .product(
-                    name: "Ordinal Test Support",
-                    package: "swift-ordinal"
-                ),
+                .product(name: "Ordinal", package: "swift-ordinal"),
             ],
             path: "Tests/Support"
         ),
-
         .testTarget(
             name: "Facet Tests",
             dependencies: [
                 .target(name: "Facet"),
-                .target(name: "Facet Comparison"),
-                .target(name: "Facet Equation"),
-                .target(name: "Facet Enumerable"),
-                .target(name: "Facet Hash"),
                 .target(name: "Facet Test Support"),
-                .product(name: "Finite Enumerable", package: "swift-finite"),
-            ]
+                .product(name: "Finite", package: "swift-finite"),
+                .target(name: "Facet Standard Library Integration"),
+                .target(name: "Facet Foundation Library Integration"),
+            ],
+            path: "Tests/Facet Tests"
         ),
     ],
     swiftLanguageModes: [.v6]
 )
 
-for target in package.targets where ![.system, .binary, .plugin, .macro].contains(target.type) {
-    let ecosystem: [SwiftSetting] = [
+for target in package.targets {
+    target.swiftSettings = [
         .strictMemorySafety(),
         .enableUpcomingFeature("ExistentialAny"),
         .enableUpcomingFeature("InternalImportsByDefault"),
@@ -160,8 +114,4 @@ for target in package.targets where ![.system, .binary, .plugin, .macro].contain
         .enableExperimentalFeature("Lifetimes"),
         .enableUpcomingFeature("InferIsolatedConformances"),
     ]
-
-    let package: [SwiftSetting] = []
-
-    target.swiftSettings = (target.swiftSettings ?? []) + ecosystem + package
 }
