@@ -3,7 +3,6 @@ public import Cardinal
 public import Direction
 public import Finite
 public import Ordinal
-public import Ordinal_Standard_Library_Integration
 
 extension Facet: Finite::Finite.Enumerable {
 

@@ -12,8 +12,8 @@ let package = Package(
     ],
     products: [
         .library(name: "Facet", targets: ["Facet"]),
-        .library(name: "Facet Standard Library Integration", targets: ["Facet Standard Library Integration"]),
-        .library(name: "Facet Foundation Library Integration", targets: ["Facet Foundation Library Integration"]),
+
+        .library(name: "Facet Foundation Integration", targets: ["Facet Foundation Integration"]),
         .library(name: "Facet Test Support", targets: ["Facet Test Support"]),
     ],
     dependencies: [
@@ -62,24 +62,16 @@ let package = Package(
                 .product(name: "Cardinal", package: "swift-cardinal"),
                 .product(name: "Finite", package: "swift-finite"),
                 .product(name: "Ordinal", package: "swift-ordinal"),
-                .product(name: "Ordinal Standard Library Integration", package: "swift-ordinal"),
             ],
             path: "Sources/Facet"
         ),
+        
         .target(
-            name: "Facet Standard Library Integration",
+            name: "Facet Foundation Integration",
             dependencies: [
                 .target(name: "Facet"),
             ],
-            path: "Sources/Facet Standard Library Integration"
-        ),
-        .target(
-            name: "Facet Foundation Library Integration",
-            dependencies: [
-                .target(name: "Facet"),
-                .target(name: "Facet Standard Library Integration"),
-            ],
-            path: "Sources/Facet Foundation Library Integration"
+            path: "Sources/Facet Foundation Integration"
         ),
         .target(
             name: "Facet Test Support",
@@ -95,8 +87,7 @@ let package = Package(
                 .target(name: "Facet"),
                 .target(name: "Facet Test Support"),
                 .product(name: "Finite", package: "swift-finite"),
-                .target(name: "Facet Standard Library Integration"),
-                .target(name: "Facet Foundation Library Integration"),
+                .target(name: "Facet Foundation Integration"),
             ],
             path: "Tests/Facet Tests"
         ),
