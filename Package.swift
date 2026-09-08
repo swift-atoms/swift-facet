@@ -17,6 +17,7 @@ let package = Package(
         .library(name: "Facet Test Support", targets: ["Facet Test Support"]),
     ],
     dependencies: [
+
         .package(
             url: "https://github.com/swift-atoms/swift-axis.git",
             branch: "main"
@@ -90,6 +91,35 @@ let package = Package(
                 .target(name: "Facet Foundation Integration"),
             ],
             path: "Tests/Facet Tests"
+        ),
+        .testTarget(
+            name: "Consolidated Facet Comparison Tests",
+            dependencies: [
+
+                .target(name: "Facet"),
+                .product(name: "Comparison", package: "swift-comparison"),
+            ],
+            path: "Tests/Consolidated swift-facet-comparison"
+        ),
+        .testTarget(
+            name: "Consolidated Facet Equation Tests",
+            dependencies: [
+
+                .target(name: "Facet"),
+                .product(name: "Equation", package: "swift-equation"),
+            ],
+            path: "Tests/Consolidated swift-facet-equation"
+        ),
+        .testTarget(
+            name: "Consolidated Facet Hash Tests",
+            dependencies: [
+
+                .target(name: "Facet"),
+                .product(name: "Hash", package: "swift-hash"),
+                .product(name: "Axis", package: "swift-axis"),
+                .product(name: "Direction", package: "swift-direction"),
+            ],
+            path: "Tests/Consolidated swift-facet-hash"
         ),
     ],
     swiftLanguageModes: [.v6]
