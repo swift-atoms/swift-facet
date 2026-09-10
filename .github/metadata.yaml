@@ -1,4 +1,3 @@
-# .github/metadata.yaml
 description: "Oriented axis faces for Swift — a Facet pairs an axis with a direction to name the 2N faces of an N-cube."
 topics:
   - primitives
