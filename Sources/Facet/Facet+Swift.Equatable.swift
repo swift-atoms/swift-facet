@@ -1,0 +1,1 @@
+extension Facet: Swift.Equatable {}
