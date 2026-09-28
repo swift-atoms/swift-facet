@@ -17,6 +17,8 @@ let package = Package(
         .library(name: "Facet Test Support", targets: ["Facet Test Support"]),
     ],
     dependencies: [
+        .package(url: "https://github.com/swift-atoms/swift-tagged.git", branch: "main"),
+        .package(url: "https://github.com/swift-atoms/swift-index.git", branch: "main"),
 
         .package(
             url: "https://github.com/swift-atoms/swift-axis.git",
@@ -40,9 +42,26 @@ let package = Package(
         ),
     ],
     targets: [
+        .testTarget(
+            name: "Facet Finite Integration Tests",
+            dependencies: [
+                .target(name: "Facet"),
+                .target(name: "Facet Test Support"),
+                .product(name: "Axis", package: "swift-axis"),
+                .product(name: "Cardinal", package: "swift-cardinal"),
+                .product(name: "Direction", package: "swift-direction"),
+                .product(name: "Finite", package: "swift-finite"),
+                .product(name: "Ordinal", package: "swift-ordinal"),
+                .product(name: "Index", package: "swift-index"),
+                .product(name: "Tagged", package: "swift-tagged"),
+            ],
+            path: "Tests/Facet Finite Integration Tests"
+        ),
         .target(
             name: "Facet",
             dependencies: [
+                .product(name: "Index", package: "swift-index"),
+                .product(name: "Tagged", package: "swift-tagged"),
                 .product(name: "Axis", package: "swift-axis"),
                 .product(name: "Direction", package: "swift-direction"),
                 .product(name: "Cardinal", package: "swift-cardinal"),
@@ -51,7 +70,7 @@ let package = Package(
             ],
             path: "Sources/Facet"
         ),
-        
+
         .target(
             name: "Facet Foundation Integration",
             dependencies: [
