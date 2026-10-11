@@ -92,7 +92,6 @@ let package = Package(
                 .target(name: "Facet"),
                 .target(name: "Facet Test Support"),
                 .product(name: "Finite", package: "swift-finite"),
-                .target(name: "Facet Foundation Integration"),
             ],
             path: "Tests/Facet Tests"
         ),
@@ -100,7 +99,7 @@ let package = Package(
     swiftLanguageModes: [.v6]
 )
 
-for target in package.targets where ![.system, .binary, .plugin].contains(target.type) {
+for target in package.targets where ![.system, .binary, .plugin, .macro].contains(target.type) {
     target.swiftSettings = (target.swiftSettings ?? []) + [
         .strictMemorySafety(),
         .enableUpcomingFeature("ExistentialAny"),

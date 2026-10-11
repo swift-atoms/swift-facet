@@ -1,1 +1,1 @@
-extension Facet: Swift.Equatable {}
+extension Facet: Swift::Equatable {}

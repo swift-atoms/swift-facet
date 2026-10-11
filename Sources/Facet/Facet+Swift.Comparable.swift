@@ -1,1 +1,1 @@
-extension Facet: Swift.Comparable {}
+extension Facet: Swift::Comparable {}

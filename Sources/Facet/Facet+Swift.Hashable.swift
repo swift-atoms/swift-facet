@@ -1,1 +1,1 @@
-extension Facet: Swift.Hashable {}
+extension Facet: Swift::Hashable {}
