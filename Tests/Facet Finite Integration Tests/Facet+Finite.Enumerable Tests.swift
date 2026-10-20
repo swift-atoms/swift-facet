@@ -1,11 +1,11 @@
 import Axis
 import Cardinal
 import Direction
-import Finite
-import Ordinal
-import Index
-import Tagged
 import Facet
+import Finite
+import Index
+import Ordinal
+import Tagged
 import Testing
 
 @Suite("Facet × Finite.Enumerable")

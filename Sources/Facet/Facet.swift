@@ -46,5 +46,5 @@ extension Facet {
 }
 
 #if !hasFeature(Embedded)
-extension Facet: Swift::Codable {}
+    extension Facet: Swift::Codable {}
 #endif
